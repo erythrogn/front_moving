@@ -12,8 +12,8 @@ defineEmits(['selecionar']);
         {{ erroMensagem ? erroMensagem : (filmes.length ? 'Escolha um filme' : 'Carregando filmes...') }}
       </option>
       
-      <option v-for="filme in filmes" :key="filme.ID || filme.id" :value="filme.ID || filme.id">
-        {{ filme.Title || filme.title }}
+      <option v-for="filme in filmes" :key="filme.id" :value="filme.id">
+        {{ filme.title }}
       </option>
     </select>
   </div>

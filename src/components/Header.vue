@@ -18,10 +18,10 @@ function avisoSeries() {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1a1a1a;
+  background-color: #063a8e;
   padding: 15px 40px;
   color: #fff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(15, 76, 150, 0.659);
 }
 
 .logo {
@@ -39,7 +39,7 @@ function avisoSeries() {
 }
 
 .nav-links a:hover, .nav-links a.active {
-  color: #fff;
+  color: #ffffff;
   font-weight: bold;
 }
 </style>

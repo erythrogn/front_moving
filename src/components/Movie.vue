@@ -17,7 +17,7 @@ async function avaliarFilme() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        movie_id: props.detalhes.ID || props.detalhes.id,
+        movie_id: props.detalhes.id,
         user_id: parseInt(usuarioId.value), 
         rating: parseInt(notaSelecionada.value)
       })
@@ -40,9 +40,16 @@ async function avaliarFilme() {
 
 <template>
   <div v-if="detalhes" class="movie-details">
-    <h2>{{ detalhes.Title || detalhes.title }}</h2>
-    
-    <p><strong>Média de Notas:</strong> <span>{{ Number(detalhes.avarage_rating || 0).toFixed(1) }}</span></p>
+    <img 
+      v-if="detalhes.poster_url" 
+      :src="detalhes.poster_url" 
+      :alt="detalhes.title" 
+      class="capa-filme"
+      @error="(e) => e.target.style.display = 'none'"
+    />
+    <h2>{{ detalhes.title }}</h2>
+ 
+    <p><strong>Média de Notas:</strong> <span>{{ Number(detalhes.average_rating || 0).toFixed(1) }}</span></p>
     <p><strong>Avaliações Totais:</strong> <span>{{ detalhes.reviews ? detalhes.reviews.length : 0 }}</span></p>
 
     <div class="avaliar-section">
@@ -51,7 +58,7 @@ async function avaliarFilme() {
         <input 
           type="number" 
           v-model="usuarioId" 
-          placeholder="id" 
+          placeholder="ID" 
           min="1"
           :disabled="enviando"
         />
@@ -87,6 +94,14 @@ async function avaliarFilme() {
   padding-top: 10px;
 }
 
+.capa-filme {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+}
 
 .avaliar-section, .distribuicao {
   margin-top: 30px;

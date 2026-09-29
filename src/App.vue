@@ -27,9 +27,25 @@ async function buscarDetalhes() {
     return;
   }
   try {
-    const resposta = await fetch(`http://localhost:3000/movies/${filmeSelecionado.value}`);
+  
+    let resposta = await fetch(`http://localhost:3000/movies/${filmeSelecionado.value}`);
     if (!resposta.ok) throw new Error('Falha ao buscar detalhes.');
-    detalhesFilme.value = await resposta.json();
+    let dados = await resposta.json();
+
+
+    if (!dados.poster_url || dados.poster_url === "") {
+      console.log("Capa ausente. A solicitar atualização automática ao backend...");
+
+      await fetch('http://localhost:3000/movies/import/tmdb', { 
+        method: 'POST' 
+      });
+      const novaResposta = await fetch(`http://localhost:3000/movies/${filmeSelecionado.value}`);
+      if (novaResposta.ok) {
+        dados = await novaResposta.json();
+      }
+    }
+    detalhesFilme.value = dados;
+    
   } catch (erro) {
     console.error(erro);
     alert('Erro ao carregar detalhes.');
