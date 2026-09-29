@@ -6,40 +6,83 @@ function avisoSeries() {
 
 <template>
   <header class="navbar">
-    <div class="logo">Filmando</div>
-    <nav class="nav-links">
-      <a href="#" class="active">Filmes</a>
-    </nav>
+    <div class="navbar-conteudo">
+      <div class="logo">Filmando</div>
+      <nav class="nav-links" aria-label="Principal">
+        <a href="Movie.vue" class="active" aria-current="page">Filmes</a>
+    <a href="Actor.vue">Atores</a>
+      </nav>
+    </div>
   </header>
 </template>
 
 <style scoped>
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background-color: var(--azul);
+  box-shadow: 0 2px 12px rgba(4, 41, 106, 0.35);
+}
+
+.navbar-conteudo {
+  box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #063a8e;
-  padding: 15px 40px;
-  color: #fff;
-  box-shadow: 0 2px 10px rgba(15, 76, 150, 0.659);
+  justify-content: space-between;
+  width: min(100% - 32px, 880px);
+  height: 60px;
+  margin: 0 auto;
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: bold;
-  letter-spacing: 1px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  height: 100%;
 }
 
 .nav-links a {
-  color: #ccc;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 14px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
   text-decoration: none;
-  margin-left: 20px;
-  font-size: 16px;
-  transition: color 0.3s;
+  border-bottom: 3px solid transparent;
+  transition: color var(--transicao), border-color var(--transicao);
 }
 
-.nav-links a:hover, .nav-links a.active {
-  color: #ffffff;
-  font-weight: bold;
+.nav-links a:hover {
+  color: #fff;
+}
+
+.nav-links a.active {
+  color: #fff;
+  font-weight: 600;
+  border-bottom-color: var(--estrela);
+}
+
+.nav-links a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+@media (max-width: 500px) {
+  .navbar-conteudo {
+    width: min(100% - 24px, 880px);
+    height: 54px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
 }
 </style>
