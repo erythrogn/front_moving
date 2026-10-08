@@ -1,0 +1,151 @@
+/* src/assets/base.css */
+
+:root {
+  --azul: #063a8e;
+  --azul-escuro: #04296a;
+  --azul-claro: #e8effc;
+  --texto: #1b2333;
+  --texto-suave: #5b6577;
+  --borda: #e3e7ef;
+  --fundo: #eef1f6;
+  --superficie: #ffffff;
+  --estrela: #f5a524;
+  --erro: #b42318;
+  --erro-fundo: #fef3f2;
+  --raio: 12px;
+  --raio-pequeno: 8px;
+  --transicao: 0.18s ease;
+  --sombra: 0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px rgba(16, 24, 40, 0.08);
+}
+
+body {
+  margin: 0;
+  background-color: var(--fundo);
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: loadingShimmer 1.5s infinite;
+}
+
+@keyframes loadingShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-pequeno {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Botões de Link Compartilhados
+   ========================================================================== */
+.btn-link {
+  appearance: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  padding: 0;
+  background-color: transparent;
+  color: var(--azul);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.3s linear, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-link:hover {
+  color: var(--azul-escuro);
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Caixas de Alerta e Mensagens de Erro
+   ========================================================================== */
+.erro,
+.alerta {
+  position: relative;
+  margin: 8px 0 0;
+  padding: 16px 24px;
+  background-color: var(--azul-escuro);
+  border: 1px solid var(--azul);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  box-shadow: 5px 0 30px rgba(4, 41, 106, 0.35);
+}
+
+.erro::before,
+.alerta::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 70%;
+  width: 3px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.alerta {
+  margin-top: 24px;
+  border-color: var(--azul-escuro);
+}
+
+.alerta-erro {
+  background-color: var(--azul-escuro);
+  color: #fff;
+}
+
+.alerta-sucesso {
+  background-color: var(--azul);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer,
+  .spinner,
+  .spinner-pequeno {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+/* Títulos Globais */
+h3 { position: relative; margin: 0 0 20px; padding: 4px 0 4px 18px; color: var(--azul-escuro); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
+h3::before { content: ""; position: absolute; left: 0; top: 15%; height: 70%; width: 3px; background-color: var(--azul); box-shadow: 0 0 10px rgba(4, 41, 106, 0.35); }
+
+/* Formulários Globais (Ex: Avaliações) */
+.form-avaliar select, .form-avaliar button { appearance: none; outline: none; font-family: inherit; height: 54px; padding: 0 28px; box-sizing: border-box; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid var(--azul-escuro); cursor: pointer; transition: background-color 0.6s ease, color 0.3s linear, box-shadow 0.6s ease; }
+.form-avaliar select { flex: 1; background-color: var(--superficie, #fff); color: var(--azul-escuro); }
+.form-avaliar select:focus { box-shadow: 5px 0 30px rgba(4, 41, 106, 0.35); }
+.form-avaliar button { position: relative; background-color: var(--azul); color: rgba(255, 255, 255, 0.72); box-shadow: 5px 0 30px rgba(4, 41, 106, 0.35); }
+.form-avaliar button:hover:not(:disabled) { background-color: var(--azul-escuro); color: #fff; box-shadow: 15px 0 50px rgba(4, 41, 106, 0.5); }
+.form-avaliar button:disabled, .form-avaliar select:disabled { opacity: 0.5; cursor: not-allowed; }
